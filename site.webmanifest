@@ -1,0 +1,17 @@
+{
+  "name": "Manga Hereford",
+  "short_name": "Manga Hereford",
+  "description": "Admisión Hereford para el jurado. Sociedad Rural de San Luis.",
+  "lang": "es-AR",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F7F4EF",
+  "theme_color": "#7D1B1C",
+  "icons": [
+    {
+      "src": "assets/logo-sociedad-rural-san-luis.png",
+      "sizes": "480x480",
+      "type": "image/png"
+    }
+  ]
+}

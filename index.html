@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Manga Hereford</title>
+  <meta name="application-name" content="Manga Hereford" />
+  <meta name="apple-mobile-web-app-title" content="Manga Hereford" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#7D1B1C" />
+  <meta name="description" content="Admisión Hereford para el jurado veterinario. Sociedad Rural de San Luis." />
+  <link rel="icon" href="assets/logo-sociedad-rural-san-luis.png" />
+  <link rel="apple-touch-icon" href="assets/logo-sociedad-rural-san-luis.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <style>
+    :root { --tinta: #1C1917; --bordo: #7D1B1C; --crema: #F7F4EF; --papel: #fff; --linea: #E4D8C8; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--crema); color: var(--tinta); font-family: system-ui, Segoe UI, sans-serif; }
+    header {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; align-items: center; gap: 12px;
+      padding: calc(8px + env(safe-area-inset-top)) 14px 10px;
+      background: var(--crema); border-bottom: 1px solid var(--linea);
+    }
+    header img { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
+    header h1 { margin: 0; font-size: 1.25rem; line-height: 1.1; }
+    header p { margin: 2px 0 0; color: #5c534c; font-size: 0.85rem; }
+    main { max-width: 720px; margin: 0 auto; padding: 12px 14px 40px; }
+    .tabs { display: flex; gap: 8px; margin: 8px 0 14px; }
+    .tabs button, button.accion {
+      min-height: 44px; border-radius: 10px; border: 1px solid var(--linea);
+      background: var(--papel); font-weight: 700; font-size: 1rem;
+    }
+    .tabs button { flex: 1; }
+    .tabs button.on { background: var(--bordo); color: #fff; border-color: var(--bordo); }
+    label { display: block; font-weight: 650; margin: 12px 0 4px; }
+    input, select, textarea {
+      width: 100%; font: inherit; font-size: 16px; padding: 12px;
+      border: 1px solid #d9cfc3; border-radius: 10px; background: #fff;
+    }
+    .opciones { display: flex; gap: 8px; }
+    .opciones label {
+      flex: 1; margin: 0; font-weight: 650; background: #fff;
+      border: 1px solid #d9cfc3; border-radius: 10px; padding: 12px;
+    }
+    .opciones input { width: auto; margin-right: 6px; }
+    .check { font-weight: 500; background: #fff; border: 1px solid var(--linea); border-radius: 10px; padding: 12px; margin: 8px 0; }
+    .check input { width: auto; margin-right: 8px; transform: scale(1.15); }
+    h2 { font-size: 1.15rem; margin: 22px 0 6px; }
+    h3 { font-size: 1rem; margin: 16px 0 4px; }
+    .ayuda, .info { color: #5c534c; font-size: 0.92rem; }
+    .mal, .obs, .falta { border-radius: 10px; padding: 10px 12px; }
+    .mal { background: #fde8e8; }
+    .obs { background: #fff4d6; }
+    .falta { background: #efe6d6; }
+    button.accion { width: 100%; margin-top: 10px; background: var(--bordo); color: #fff; border: 0; }
+    button.secundario { width: 100%; margin-top: 8px; min-height: 44px; border-radius: 10px; font-weight: 700; }
+    #mensaje { font-weight: 700; }
+    details { background: #fff; border: 1px solid var(--linea); border-radius: 10px; padding: 10px 12px; margin: 8px 0; }
+    summary { font-weight: 700; min-height: 32px; }
+    pre { white-space: pre-wrap; background: #fff; border-radius: 10px; padding: 12px; font-size: 0.85rem; }
+    article { margin: 14px 0; }
+    a { color: var(--bordo); font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.92rem; }
+    th, td { border-bottom: 1px solid var(--linea); text-align: left; padding: 8px; vertical-align: top; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="assets/logo-sociedad-rural-san-luis.png" alt="Sociedad Rural de San Luis" />
+    <div>
+      <h1>Manga Hereford</h1>
+      <p>Sociedad Rural de San Luis</p>
+    </div>
+  </header>
+  <main>
+    <p class="ayuda">Admisión en la manga. Se abre con el enlace, con datos móviles o cualquier WiFi. El dictamen queda en este celular y lo firmás vos.</p>
+    <nav class="tabs">
+      <button type="button" class="on" data-tab="manga">Manga</button>
+      <button type="button" data-tab="norma">Norma</button>
+      <button type="button" data-tab="informes">Informes</button>
+    </nav>
+
+    <section class="panel" id="manga">
+      <h2>Jurado</h2>
+      <label for="veterinario">Médico veterinario</label>
+      <input id="veterinario" placeholder="Nombre y matrícula" />
+      <label for="exposicion">Exposición</label>
+      <input id="exposicion" placeholder="Rural, fecha, localidad" />
+
+      <h2>Animal en la manga</h2>
+      <label for="rp">RP o caravana</label>
+      <input id="rp" placeholder="Número de catálogo" />
+      <label for="cabana">Cabaña</label>
+      <input id="cabana" />
+      <p>Sexo</p>
+      <div class="opciones">
+        <label><input type="radio" name="sexo" value="Macho" checked /> Macho</label>
+        <label><input type="radio" name="sexo" value="Hembra" /> Hembra</label>
+      </div>
+      <p>Registro</p>
+      <div class="opciones">
+        <label><input type="radio" name="registro" value="PP" checked /> PP</label>
+        <label><input type="radio" name="registro" value="PR" /> PR</label>
+        <label id="registros-vip" hidden><input type="radio" name="registro" value="VIP" /> VIP</label>
+      </div>
+      <p>Variedad inscripta</p>
+      <div class="opciones">
+        <label><input type="radio" name="variedad" value="Mocho" checked /> Mocho</label>
+        <label><input type="radio" name="variedad" value="Astado" /> Astado</label>
+      </div>
+      <label for="constatada">Variedad que constatás</label>
+      <select id="constatada">
+        <option>Mocho limpio</option>
+        <option>Tocos adheridos al cuero</option>
+        <option>Astado</option>
+      </select>
+      <label for="denticion">Dentición</label>
+      <select id="denticion">
+        <option value="No examinada">No examinada</option>
+        <option value="DL">Diente de leche</option>
+        <option value="2D">Dos dientes</option>
+        <option value="4D">Cuatro dientes</option>
+        <option value="6D">Seis dientes</option>
+        <option value="8D">Ocho dientes</option>
+      </select>
+      <label for="edad">Edad (meses)</label>
+      <input id="edad" inputmode="numeric" placeholder="Ej. 22" />
+      <label for="peso">Peso (kg, opcional)</label>
+      <input id="peso" inputmode="decimal" />
+      <div id="bloque-ce">
+        <label for="ce">Circunferencia escrotal (cm)</label>
+        <input id="ce" inputmode="decimal" placeholder="Medida en la manga" />
+      </div>
+      <div id="bloque-prenez" hidden>
+        <label for="exige">Qué pide la categoría</label>
+        <select id="exige">
+          <option>No corresponde</option>
+          <option>Vacía normal o preñada</option>
+          <option>Preñez de 60 días o más</option>
+          <option>Preñada o parida</option>
+          <option>Parida con cría al pie</option>
+        </select>
+        <label for="palpa">Qué palpás</label>
+        <select id="palpa">
+          <option>No constatada</option>
+          <option>Vacía, genitales normales</option>
+          <option>Preñada de 60 días o más</option>
+          <option>Preñada de menos de 60 días</option>
+          <option>Parida con cría</option>
+          <option>Anormalidad genital palpable</option>
+        </select>
+      </div>
+
+      <h2>Fotos</h2>
+      <p class="ayuda">Sacá una foto por región. La ficha no clasifica la imagen: deja constancia en este celular.</p>
+      <div id="fotos"></div>
+
+      <h2>Lo que constatás</h2>
+      <p class="ayuda">Marcá solo lo que ves.</p>
+      <div id="marcas"></div>
+
+      <h2>Dictamen</h2>
+      <p id="minimo" class="ayuda"></p>
+      <p id="sugerencia" class="obs"></p>
+      <p id="nota-causal" class="ayuda" hidden>Esta sugerencia sale de una causal en la que el reglamento te deja rechazar o descalificar. Podés cambiar el dictamen.</p>
+      <div id="alertas"></div>
+      <label for="fundamento">Fundamento para el comisario (Art. 27)</label>
+      <textarea id="fundamento" rows="6"></textarea>
+      <p>Dictamen del jurado</p>
+      <div class="opciones" style="flex-direction: column;">
+        <label><input type="radio" name="dictamen" value="Admitido" /> Admitido</label>
+        <label><input type="radio" name="dictamen" value="Admitido con observación" /> Admitido con observación</label>
+        <label><input type="radio" name="dictamen" value="Descalificado" /> Descalificado</label>
+        <label><input type="radio" name="dictamen" value="Rechazado" /> Rechazado</label>
+      </div>
+      <p id="efecto" class="ayuda"></p>
+      <label class="check"><input type="checkbox" id="confirmo" /> Confirmo que este dictamen es el del jurado de admisión</label>
+      <button class="accion" id="guardar" type="button">Guardar admisión</button>
+      <p id="mensaje"></p>
+      <a id="descarga" hidden>Descargar informe</a>
+      <button class="secundario" id="otro" type="button">Otro animal</button>
+    </section>
+
+    <section class="panel" id="norma" hidden>
+      <h2>Qué mira el jurado</h2>
+      <p>La admisión la rige el Reglamento General de Exposiciones 2026 de la Asociación Argentina Criadores de Hereford. El pelaje, la estructura y la diferencia mocho/astado están en el Reglamento del Puro Registrado, vigente desde el 23 de octubre de 2023.</p>
+      <h3>Circunferencia escrotal mínima (Art. 26)</h3>
+      <table>
+        <tr><th>Edad, Pedigree</th><th>Mínimo</th><th>Puro Registrado</th></tr>
+        <tr><td>15 a 17 meses</td><td>32,0 cm</td><td>Torito diente de leche Sur</td></tr>
+        <tr><td>18 a 21 meses</td><td>34,5 cm</td><td>Diente de leche</td></tr>
+        <tr><td>22 a 25 meses</td><td>35,5 cm</td><td>Dos dientes</td></tr>
+        <tr><td>26 a 29 meses</td><td>36,5 cm</td><td>Cuatro dientes</td></tr>
+        <tr><td>30 meses o más</td><td>36,5 cm</td><td>Seis dientes</td></tr>
+      </table>
+      <p class="ayuda">En PR y VIP el mínimo va por dentición. Ocho dientes no tienen categoría y se rechazan (Art. 19.9).</p>
+      <h3>Pelaje</h3>
+      <p>Cuerpo colorado, cara blanca, orejas coloradas, blanco en pecho, vientre, ingle y extremos, penacho blanco. Las anteojeras coloradas se admiten. Mancha negra, color ajeno y piel negra impiden calificar PR o VIP. En la exposición el jurado elige rechazo o descalificación.</p>
+      <p>En el macho mocho se aceptan tocos adheridos al cuero si no deforman la cabeza. En la hembra no. Si la variedad inscripta no coincide, vale la que constate el jurado (Art. 18.b).</p>
+      <h3>Rechazo y descalificación</h3>
+      <p>El rechazado no compite y no sale a venta. El descalificado puede salir a venta si queda identificado (Art. 23).</p>
+    </section>
+
+    <section class="panel" id="informes" hidden>
+      <h2>Informes de este celular</h2>
+      <div id="lista"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
